@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { useContext } from 'react'
 import TransactionContext from '../context/TransactionContext'
-import { v4 as uuidv4 } from 'uuid';
+
 
 function AddTransaction() {
   const [formData, setFormData] = useState({
-    id: uuidv4(),
+    id: null,
     amount: 0,
     desc: "",
   })
@@ -20,7 +20,7 @@ function AddTransaction() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setBalance([...balance, formData])
+    setBalance([...balance, {...formData, id: balance.length }])
     document.getElementById("form").reset();
   }
 

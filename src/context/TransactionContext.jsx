@@ -9,19 +9,19 @@ export const TransactionContextProvider = ({ children }) => {
   const [expense, setExpense] = useState(0)
 
   useEffect(() => {
-    const summingData = async () => {
+    const summingBalance = async () => {
       const sum = balance.reduce((accumulator, item) => {
         return accumulator + parseInt(item.amount);
       }, 0);
       setTotal(sum)
     };
-    summingData();
+    summingBalance();
   },[balance]);
 
   console.log(total)
 
   useEffect(() => {
-    const summingData = async () => {
+    const summingIncome = () => {
       let sum = 0
       balance.forEach(item => {
         if(item.amount >= 0){
@@ -30,11 +30,11 @@ export const TransactionContextProvider = ({ children }) => {
       });
       setIncome(sum)
     };
-    summingData();
+    summingIncome();
   },[balance]);
 
   useEffect(() => {
-    const summingData = async () => {
+    const summingExpense = () => {
       let sum = 0
       balance.forEach(item => {
         if(item.amount < 0){
@@ -43,7 +43,7 @@ export const TransactionContextProvider = ({ children }) => {
       });
       setExpense(sum)
     };
-    summingData();
+    summingExpense();
   },[balance]);
 
 
